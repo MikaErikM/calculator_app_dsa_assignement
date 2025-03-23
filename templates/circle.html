@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Circle Calculator</h1>
+    <form method="post">
+        <input type="text" name="radius" placeholder="Enter the radius" required="required"/>
+        <label for="calculation">Calculation</label>
+        <select id="calculation" name="calculation">
+            <option value="area">Calculate Area</option>
+            <option value="perimeter">Calculate Perimeter</option>
+        </select>
+        <button type="submit">Calculate</button>
+    </form>
+    <br>
+    {% if radius %}
+    <div class="result">
+        <h3>Results for circle with radius {{ radius }}:</h3>
+        {% if area is not none %}
+            <p>Area: {{ "%.4f"|format(area) }}</p>
+        {% endif %}
+        {% if perimeter is not none %}
+            <p>Perimeter: {{ "%.4f"|format(perimeter) }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="error">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+{% endblock %}
